@@ -17,8 +17,8 @@
 var config = {
   webServer: {
     ip: '0.0.0.0',
-    port: process.env.WEB_CLIENT_PORT || 3000,
-    isProdMode: process.env.NODE_ENV == 'production'
+    port: process.env.PORT || 3002,
+    isProdMode: true
   }
 };
 module.exports = config;
