@@ -1,9 +1,9 @@
 {
-  "name": "Twitter-Stream-Classifier-Web-UI",
+  "name": "spyfall 2 game",
   "version": "1.0.0",
-  "description": "Simple Web UI application for the set of sample apps which pull tweets related to some movies, drop the tweets to Kafka, classify the tweets as positive/negative and, finally, export counters and the tweets to Cassandra.",
+  "description": "table game spyfall 2 russian language",
   "scripts": {
-    "start": "DEBUG=streaming-sample:* WEB_CLIENT_PORT=3005 node server/server.js",
+    "start": "DEBUG=sfall:* WEB_CLIENT_PORT=3005 node server/server.js",
     "lint": "eslint './*/**.js'",
     "postinstall": "npm run build",
     "clean": "rm -rf server/dist",
