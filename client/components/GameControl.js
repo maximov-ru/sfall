@@ -23,13 +23,18 @@ class GameControl extends Component {
     return (
     <div className="jumbotron">
         <h2>
-          Подключено игроков: { gamesList.players } | { gamesList.timer }
+          Подключено игроков: { gamesList.players }
         </h2>
         <p>
             Когда подключатся все игроки, для распределения ролей нажмите кнопку старт
         </p>
         <p>
-          <a className="btn btn-primary btn-large btn-success" href="#" onClick={ requestStartGame.bind(this) }>Старт</a>
+            {
+                gamesList.isActiveStartButton ?
+                    <a className="btn btn-primary btn-large btn-success" onClick={ requestStartGame.bind(this) }>Старт</a>
+                    :
+                    <a className="btn btn-primary btn-large btn-success disabled">До начала игры { gamesList.timer } сек</a>
+            }
         </p>
     </div>
     );
