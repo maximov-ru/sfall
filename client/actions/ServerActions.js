@@ -22,6 +22,11 @@ export function init(store) {
     console.log('playersCount',response);
     store.dispatch(callbackPlayersCount(response));
   });
+  
+  socket.on('locationList', (response) => {
+    console.log('locationList',response);
+    store.dispatch(callbackLocationsList(response));
+  });
 
   socket.on('connect',()=>{
     console.log('serv conn');

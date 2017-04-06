@@ -2,6 +2,7 @@ import {
   CALLBACK_GAME_ROLE,
   CALLBACK_GAME_TIMER,
   CALLBACK_PLAYERS_COUNT,
+  CALLBACK_LOCATIONS_LIST,
   REQUEST_START_GAME
 } from '../constants/ActionTypes';
 
@@ -31,6 +32,13 @@ export function callbackGameTimer(info) {
 export function callbackPlayersCount(info) {
   return {
     type: CALLBACK_PLAYERS_COUNT,
+    payload: info
+  };
+}
+
+export function callbackLocationsList(info) {
+  return {
+    type: CALLBACK_LOCATIONS_LIST,
     payload: info
   };
 }
