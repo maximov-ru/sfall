@@ -15,27 +15,17 @@ class LocationsList extends Component {
   }
 
   render() {
-    let {
-      requestStartGame
-      } = this.props.pageActions;
-    let { gamesList } = this.props;
-
+    let { locationsList } = this.props;
+    console.log(locationsList);
     return (
-    <div className="jumbotron">
-        <h2>
-          Подключено игроков: { gamesList.players }
-        </h2>
-        <p>
-            Когда подключатся все игроки, для распределения ролей нажмите кнопку старт
-        </p>
-        <p>
-            {
-                gamesList.isActiveStartButton ?
-                    <a className="btn btn-primary btn-large btn-success" onClick={ requestStartGame.bind(this) }>Старт</a>
-                    :
-                    <a className="btn btn-primary btn-large btn-success disabled">До начала игры { gamesList.timer } сек</a>
-            }
-        </p>
+    <div className="location-list">
+      {locationsList.locations.map( item => {
+        return <div className="location">
+            <img src={item.background}></img>
+              <div className="location-name"><div className="card-text">{ item.title }</div></div>
+              <div className="location-role"><div className="card-text">&nbsp;</div></div>
+          </div>;
+      })}
     </div>
     );
   }
@@ -44,17 +34,10 @@ class LocationsList extends Component {
 
 function mapStateToProps(state) {
   return {
-    gamesList: state.gamesList
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    pageActions: bindActionCreators(pageActions, dispatch)
+    locationsList: state.locationsList
   };
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GameControl);
+  mapStateToProps
+)(LocationsList);

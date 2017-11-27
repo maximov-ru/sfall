@@ -17,6 +17,10 @@ var events = {
     Player.startTimer(socket.gameKey);
   },
 
+  getLocationList: function (socket) {
+    socket.emit('locationList', Player.getLocationsList());
+  },
+
   setKey: function (socket, data) {
     socket.gameKey = data.gameKey;
     if(!socket.gameKey){

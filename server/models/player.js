@@ -9,6 +9,7 @@ var config = require('../locations.config');
 var players = {};
 var playersMap = {};
 var timersMap = {};
+var locationsList = null;
 
 class Player {
   constructor() {
@@ -99,6 +100,20 @@ class Player {
       delete players[key];
       delete playersMap[key];
     }
+  }
+
+  static getLocationsList() {
+    if (!locationsList) {
+      locationsList = [];
+      config.locations.forEach(locationInfo => {
+        locationsList.push({
+          title: locationInfo.title,
+          background: locationInfo.background
+        });
+      });
+    }
+
+    return locationsList;
   }
 }
 module.exports = Player;

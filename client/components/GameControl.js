@@ -4,6 +4,7 @@
 import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
+import LocationsList from './LocationsList';
 
 import * as pageActions from '../actions/PageActions';
 
@@ -12,6 +13,29 @@ class GameControl extends Component {
 
   constructor(props, context) {
     super(props, context);
+    this.state = {
+      isShowLocationList: false
+    };
+  }
+
+  showLocationList() {
+    console.log('showLocationList');
+    let {
+      getLocationList
+    } = this.props.pageActions;
+
+    getLocationList();
+
+    this.setState({
+      isShowLocationList: true
+    });
+  }
+
+  hideLocationList() {
+    console.log('hideLocationList');
+    this.setState({
+      isShowLocationList: false
+    });
   }
 
   render() {
@@ -19,6 +43,11 @@ class GameControl extends Component {
       requestStartGame
       } = this.props.pageActions;
     let { gamesList } = this.props;
+    let {
+      isShowLocationList
+    } = this.state;
+
+    console.log('isShowLocationList', this.state.isShowLocationList);
 
     return (
       <div>
@@ -27,7 +56,18 @@ class GameControl extends Component {
               Перед игрой рекомендуем ознакомиться со списком локаций
           </p>
           <p>
-            <a className="btn btn-primary btn-large btn-success" onClick={ requestStartGame.bind(this) }>Ознакомиться</a>
+            {
+              !isShowLocationList ?
+                <a className="btn btn-primary btn-large btn-success" onClick={ this.showLocationList.bind(this) }>Ознакомиться</a>
+                :
+                <a className="btn btn-primary btn-large btn-success" onClick={ this.hideLocationList.bind(this) }>Скрыть</a>
+            }
+            {
+              isShowLocationList ?
+                <LocationsList></LocationsList>
+                :
+                null
+            }
           </p>
       </div>
         <div className="jumbotron">

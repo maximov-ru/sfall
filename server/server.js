@@ -1,10 +1,9 @@
-var log = console.log;
+var log = console.log;// eslint-disable-line
 var error = Error;
 
 
 var mainConfig = require('./main.config');
 var path = require('path');
-var fs = require('fs');
 
 //import port number from configuration file
 var port = mainConfig.webServer.port;
@@ -31,11 +30,6 @@ server.listen(port, mainConfig.webServer.ip,
 var IoController = require('./controllers/io.controller');
 //run socket io controller
 new IoController(io);
-
-var getIndexContent = function () {
-  var indexFile = path.resolve('server/dist/index.html');
-  return fs.readFileSync(indexFile, 'utf8');
-};
 
 app.get('/images/*', function (req, res) {
   res.sendFile(path.resolve('client/images/' + req.params[0]));
@@ -67,8 +61,4 @@ if (mainConfig.webServer.isProdMode) {
     res.setHeader('Content-Length', content.length);
     res.send(content);
   });
-  getIndexContent = function () {
-    var filename = path.join(compiler.outputPath, 'index.html');
-    return compiler.outputFileSystem.readFileSync(filename);
-  };
 }

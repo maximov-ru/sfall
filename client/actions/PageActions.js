@@ -15,6 +15,13 @@ export function requestStartGame() {
   }
 }
 
+export function getLocationList() {
+  return () => {
+    console.log('getLoc');
+    socket.emit('getLocationList');
+  }
+}
+
 export function callbackGameRole(info) {
   return {
       type: CALLBACK_GAME_ROLE,
@@ -36,7 +43,7 @@ export function callbackPlayersCount(info) {
   };
 }
 
-export function callbackLocationsList(info) {
+export function callbackLocationList(info) {
   return {
     type: CALLBACK_LOCATIONS_LIST,
     payload: info

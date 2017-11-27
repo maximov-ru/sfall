@@ -1,7 +1,8 @@
 import {
   callbackGameRole,
   callbackGameTimer,
-  callbackPlayersCount
+  callbackPlayersCount,
+  callbackLocationList
 } from './PageActions';
 
 export const socket = window.io();
@@ -22,10 +23,10 @@ export function init(store) {
     console.log('playersCount',response);
     store.dispatch(callbackPlayersCount(response));
   });
-  
+
   socket.on('locationList', (response) => {
     console.log('locationList',response);
-    store.dispatch(callbackLocationsList(response));
+    store.dispatch(callbackLocationList(response));
   });
 
   socket.on('connect',()=>{
